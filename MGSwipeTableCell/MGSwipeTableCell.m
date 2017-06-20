@@ -1242,11 +1242,11 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
                 backgroundColor = expansion.backgroundColorCopy; //keep expansion background color
                 expansion.backgroundColorCopy = expSettings.expansionColor;
             }
+            BOOL autoHide = [expansion handleClick:expandedButton fromExpansion:YES];
             [self setSwipeOffset:_targetOffset animation:expSettings.triggerAnimation completion:^(BOOL finished){
                 if (!finished || self.hidden || !expansion) {
                     return; //cell might be hidden after a delete row animation without being deallocated (to be reused later)
                 }
-                BOOL autoHide = [expansion handleClick:expandedButton fromExpansion:YES];
                 if (autoHide) {
                     [expansion endExpansionAnimated:NO];
                 }
